@@ -1,0 +1,70 @@
+version: 2
+
+sources:
+  - name: tap-meltano
+    schema: "{{ env_var('TARGET_POSTGRES_SCHEMA') }}"
+    description: Data synced from Meltano.
+    tables:
+      - name: stream_meltano_jobs
+        columns:
+          - name: id
+            description: Job Id
+            tests:
+              - unique
+              - not_null
+models:
+  - name: meltano_jobs
+    columns:
+      - name: id
+        description: Job Id
+        tests:
+          - unique
+          - not_null
+      - name: ended_at
+        description: Timestamp of job end time
+        tests:
+          - not_null
+  - name: meltano_daily_jobs
+    columns:
+      - name: total_jobs
+        description: Number of jobs run by day
+        tests:
+          - not_null
+      - name: average_job_duration
+        description: Average duration of job run by day
+        tests:
+          - not_null
+      - name: total_job_duration
+        description: Total duration of all jobs run by day
+        tests:
+          - not_null
+      - name: total_successful_jobs
+        description: Count of successful jobs by day
+        tests:
+          - not_null
+      - name: total_failed_jobs
+        description: Count of failed jobs by day
+        tests:
+          - not_null
+  - name: meltano_monthly_jobs
+    columns:
+      - name: total_jobs
+        description: Number of jobs run by month
+        tests:
+          - not_null
+      - name: average_job_duration
+        description: Average duration of job run by month
+        tests:
+          - not_null
+      - name: total_job_duration
+        description: Total duration of all jobs run by month
+        tests:
+          - not_null
+      - name: total_successful_jobs
+        description: Count of successful jobs by month
+        tests:
+          - not_null
+      - name: total_failed_jobs
+        description: Count of failed jobs by month
+        tests:
+          - not_null

@@ -1,8 +1,8 @@
--- Assert that the total jobs reported in meltano_monthly_jobs_by_job_name equals the count of jobs from meltano_jobs over the last whole month
+-- Assert that the total jobs reported in meltano_monthly_jobs_by_job_id equals the count of jobs from meltano_jobs over the last whole month
 
 select
     sum(total_jobs)
-from {{ ref('meltano_monthly_jobs_by_job_name')}}
+from {{ ref('meltano_monthly_jobs_by_job_id')}}
 where month = to_char(current_date - interval '1' month, 'YYYY-MM')
 having sum(total_jobs) != (select count(*)
                     from {{ ref('meltano_jobs')}}

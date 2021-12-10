@@ -12,7 +12,9 @@ This package along with the [Analyze Bundle](https://github.com/Matatika/analyze
 | ---------------------- | ------------------------------------------------------------- |
 | [meltano_jobs](models/base/meltano_jobs.sql) | All Meltano jobs with their duration |
 | [meltano_daily_jobs](models/base/meltano_daily_jobs.sql) | Daily stats of meltano jobs |
+| [meltano_daily_jobs_by_job_id](models/base/meltano_daily_jobs_by_job_id.sql) | Daily stats of meltano jobs by job Id|
 | [meltano_monthly_jobs](models/base/meltano_monthly_jobs.sql) | Monthly stats of meltano jobs |
+| [meltano_monthly_jobs_by_job_id](models/base/meltano_monthly_jobs_by_job_id.sql) | Monthly stats of meltano jobs by job Id|
 
 
 ## Installation Instructions

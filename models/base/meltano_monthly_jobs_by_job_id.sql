@@ -10,6 +10,8 @@ meltano_monthly_jobs as (
         , count(*) as total_jobs
         , date_trunc('second', avg(job_duration)) as average_job_duration
         , sum(job_duration) as total_job_duration
+        , min(job_duration) as min_job_duration
+        , max(job_duration) as max_job_duration
         , sum(case when state = 'SUCCESS' then 1 else 0 end) as total_successful_jobs
         , sum(case when state = 'FAIL' then 1 else 0 end) as total_failed_jobs
     from meltano_jobs

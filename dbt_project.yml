@@ -1,5 +1,5 @@
-name: 'tap_meltano'
-version: '0.1.0'
+name: "tap_meltano"
+version: "0.1.1"
 require-dbt-version: [">=0.20.0", "<=1.0.0"]
 
 config-version: 2
@@ -20,6 +20,6 @@ models:
     +full_refresh: true
     base:
       materialized: table
-      
+
 vars:
   schema: "{{ env_var('DBT_TARGET_SCHEMA') }}" # the schema where the raw TapMeltano tables are located

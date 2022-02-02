@@ -4,5 +4,5 @@ select
     count(*)
 from {{ ref('meltano_jobs')}}
 having count(*) != (select count(*)
-                    from {{ env_var('TARGET_POSTGRES_SCHEMA') }}.stream_meltano_jobs
+                    from {{ source('meltano', 'stream_meltano_jobs') }}
                     where state != 'RUNNING')

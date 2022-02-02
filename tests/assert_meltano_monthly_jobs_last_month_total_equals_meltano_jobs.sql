@@ -3,7 +3,7 @@
 select
     sum(total_jobs)
 from {{ ref('meltano_monthly_jobs')}}
-where month = to_char(current_date - interval '1' month, 'YYYY-MM')
+where month = to_char(current_date - interval '1 month', 'YYYY-MM')
 having sum(total_jobs) != (select count(*)
                     from {{ ref('meltano_jobs')}}
-                    where to_char(started_at, 'YYYY-MM') = to_char(current_date - interval '1' month, 'YYYY-MM'))
+                    where to_char(started_at, 'YYYY-MM') = to_char(current_date - interval '1 month', 'YYYY-MM'))

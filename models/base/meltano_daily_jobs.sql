@@ -7,12 +7,23 @@ meltano_daily_jobs as (
     select
         started_at::date as date
         , count(*) as total_jobs
-        , date_trunc('second',avg(job_duration)) as average_job_duration
-        , sum(job_duration) as total_job_duration
+        , avg(job_duration_seconds) as average_job_duration_seconds
+        , sum(job_duration_seconds) as total_job_duration_seconds
+        , min(job_duration_seconds) as min_job_duration_seconds
+        , max(job_duration_seconds) as max_job_duration_seconds
         , sum(case when state = 'SUCCESS' then 1 else 0 end) as total_successful_jobs
         , sum(case when state = 'FAIL' then 1 else 0 end) as total_failed_jobs
     from meltano_jobs
     group by started_at::date
     order by date desc
+),
+final as (
+    select
+        *
+        , {{ seconds_to_time("average_job_duration_seconds") }} as average_job_duration
+        , {{ seconds_to_time("total_job_duration_seconds") }} as total_job_duration
+        , {{ seconds_to_time("min_job_duration_seconds") }} as min_job_duration
+        , {{ seconds_to_time("max_job_duration_seconds") }} as max_job_duration
+    from meltano_daily_jobs
 )
-select * from meltano_daily_jobs
+select * from final

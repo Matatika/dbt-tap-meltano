@@ -2,13 +2,19 @@
 
 with stream_meltano_jobs as (
     select * 
-    from "{{var('schema')}}".stream_meltano_jobs
+    from {{ source('meltano', 'stream_meltano_jobs') }}
     where state != 'RUNNING'
 ),
 meltano_jobs as (
     select
         *
-        , date_trunc('second', ended_at - started_at) as job_duration
+        , {{ date_diff("started_at", "ended_at", 'second') }} as job_duration_seconds
     from stream_meltano_jobs
+),
+final as (
+    select
+        *
+        , {{ seconds_to_time("job_duration_seconds") }} as job_duration
+    from meltano_jobs
 )
-select * from meltano_jobs
+select * from final

@@ -1,0 +1,13 @@
+version: 2
+sources:
+  - name: meltano
+    schema: "{{ env_var('DBT_TARGET_SCHEMA') }}"
+    description: Data synced from Meltano.
+    tables:
+      - name: stream_meltano_jobs
+        columns:
+          - name: id
+            description: Job Id
+            tests:
+              - unique
+              - not_null

@@ -1,7 +1,7 @@
 version: 2
 sources:
   - name: meltano
-    schema: "{{ env_var('DBT_TARGET_SCHEMA') }}"
+    schema: "{{ env_var('DBT_SOURCE_SCHEMA') }}"
     description: Data synced from Meltano.
     tables:
       - name: stream_meltano_jobs

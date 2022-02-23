@@ -1,5 +1,5 @@
 name: "tap_meltano"
-version: "0.1.2"
+version: "0.3.0"
 require-dbt-version: [">=0.20.0", "<=1.0.0"]
 
 config-version: 2

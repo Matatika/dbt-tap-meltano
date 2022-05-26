@@ -1,5 +1,5 @@
 <a href="https://github.com/Matatika/dbt-tap-meltano/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/Matatika/dbt-tap-meltano"></a> ![dbt logo and 
-version](https://img.shields.io/static/v1?logo=dbt&label=dbt-version&message=[%3E=0.20.0;%3C2.0.0]&color=orange)
+version](https://img.shields.io/static/v1?logo=dbt&label=dbt-version&message=[%3E=1.0.0;%3C2.0.0]&color=orange)
 
 
 # dbt-tap-meltano
